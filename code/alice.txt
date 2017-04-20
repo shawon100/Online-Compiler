@@ -1,0 +1,23 @@
+
+
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    long long int t,a,b,c,d,n,i;
+    cin>>t;
+    for(i=1;i<=t;i++)
+    {
+        cin>>a>>b>>c>>d;
+        if(abs(a-c)==abs(b-d))
+        {
+            cout<<"Yes"<<endl;
+        }
+        else
+        {
+            cout<<"No"<<endl;
+        }
+    }
+    return 0;
+}
+

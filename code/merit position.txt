@@ -1,0 +1,80 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+struct point
+{
+    string x[200];
+    double y;
+};
+
+
+int main()
+{
+    struct point a[200],b[200],tmp;
+    int i,j,n,c,k;
+    string st,ct[200];
+    double cg;
+    cin>>n;
+    for(i=0;i<n;i++)
+    {
+        cin>>a[i].x[i]>>a[i].y;
+
+
+    }
+
+    //sort according to cgpa
+    for(i=0;i<n;i++)
+    {
+        for(j=i+1;j<n;j++)
+        {
+            if(a[i].y<a[j].y)
+            {
+                swap(a[i].x[i],a[j].x[j]);
+                swap(a[i].y,a[j].y);
+            }
+        }
+    }
+    //sort name when cgpa  same
+
+   for(i=0;i<n;i++)
+    {
+        for(j=i+1;j<n;j++)
+        {
+
+            if(a[i].y==a[j].y)
+            {
+
+               if(a[i].x[i]>a[j].x[j])
+               {
+
+                   st=a[i].x[i];
+                   a[i].x[i]=a[j].x[j];
+                   a[j].x[j]=st;
+               }
+
+
+            }
+
+        }
+    }
+
+    cg=0.0;
+    c=0;
+    for(i=0;i<n;i++)
+    {
+
+       if(a[i].y>cg || a[i].y<cg)
+       {
+           c++;
+       }
+       cg=a[i].y;
+       cout<<c<<"."<<a[i].x[i]<<endl;
+
+
+    }
+
+    return 0;
+
+}

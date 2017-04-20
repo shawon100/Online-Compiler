@@ -1,0 +1,44 @@
+
+
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+
+    long long int t,n[100],i,l,j;
+    string s[100];
+    cin>>t;
+    for(i=0;i<t;i++)
+    {
+        cin>>s[i]>>n[i];
+
+    }
+    cin>>l;
+
+    for(j=t-1;j>=0;j--)
+    {
+        if(s[j]=="add")
+        {
+            l=l-n[j];
+        }
+        else if(s[j]=="divide")
+        {
+            l=l*n[j];
+        }
+        else if(s[j]=="subtract")
+        {
+            l=l+n[j];
+        }
+        else if(s[j]=="multiply")
+        {
+            l=l/n[j];
+        }
+    }
+    cout<<l<<endl;
+
+
+    return 0;
+
+
+}
+

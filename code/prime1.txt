@@ -1,0 +1,105 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define n 10000000
+vector<long long int>s;
+long long int p[n],k=1,size;
+bool a[n];
+long long int prime()
+{
+    long long i,j;
+    a[0]=a[1]=1;
+    for(i=4;i<=n;i=i+2)
+    {
+        a[i]=1;
+    }
+    for(i=3;i<=sqrt(n);i=i+2)
+    {
+        for(j=i*i;j<=n;j=j+2*i)
+        {
+            a[j]=1;
+        }
+    }
+    for(i=2;i<=n;i++)
+    {
+        if(a[i]==0)
+        {
+            p[k]=i;
+            //cout<<p[k]<<endl;
+            k++;
+        }
+    }
+
+
+}
+
+long long int isprime(long long int v)
+{
+    long long int x;
+    if(v<=n)
+    {
+        if(a[v]==0)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    else if(v>n)
+    {
+    for(x=1;x<=k && p[x]<=sqrt(v);x++)
+    {
+        if(v%p[x]==0)
+        {
+            return 0;
+        }
+    }
+    }
+
+    return 1;
+}
+
+
+void generate_prime(long long int f, long long int t)
+{
+    s.clear();
+    long long int y,in=0;
+    for(y=f;y<=t;y++)
+    {
+
+        if(isprime(y))
+        {
+            s.push_back(y);
+            cout<<s[in]<<endl;
+            in++;
+        }
+    }
+
+    cout<<endl;
+
+
+}
+
+int main()
+{
+     long long int m,g,c,r,t,l,h,u,w,tc,tx;
+
+     prime();
+     cin>>tc;
+
+     for(tx=1;tx<=tc;tx++)
+     {
+
+        cin>>l>>u;
+        generate_prime(l,u);
+
+
+     }
+
+
+
+    return 0;
+}
+
+
