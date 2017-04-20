@@ -8,7 +8,7 @@ C , C++ And Java
 
 # Requirements
 
-Linux, gcc,g++ , Java Compilers, Lampp
+Linux, gcc, g++ , Java Compilers And Lampp
 
 
 # Install Compilers
