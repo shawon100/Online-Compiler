@@ -1,6 +1,6 @@
 # Demo
 
-http://ruetoc-ruetoc.193b.starter-ca-central-1.openshiftapps.com/index.php
+http://ruetoj-ruetoj.193b.starter-ca-central-1.openshiftapps.com/home.php
 
 
 # Online-Compiler
