@@ -56,7 +56,7 @@
 
 <div class="row log">
 <div class="col-sm-10">
-<center><div class="alert alert-success"><a href="https://github.com/shawon100/RUET-OJ">RUET OJ</a> is temporary unavailable for server problem. We will be back</div></center><br>
+<!--<center><div class="alert alert-success"><a href="https://github.com/shawon100/RUET-OJ">RUET OJ</a> is temporary unavailable for server problem. We will be back</div></center><br>-->
 <div class=""><h3 style="text-align:center;">Online Compiler</h3></div>
 </div>
 
