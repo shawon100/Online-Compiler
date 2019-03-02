@@ -1,6 +1,6 @@
 # Demo
 
-http://ruetoj-ruetoj.1d35.starter-us-east-1.openshiftapps.com/
+http://ruetoc-ruetoc.1d35.starter-us-east-1.openshiftapps.com/
 
 
 # Online-Compiler
