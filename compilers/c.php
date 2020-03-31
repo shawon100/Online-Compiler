@@ -1,6 +1,5 @@
 <?php
 header('Access-Control-Allow-Origin: *');  
-$mng = new MongoDB\Driver\Manager("mongodb://localhost:27017");
         
     
         $postdata = file_get_contents("php://input");
