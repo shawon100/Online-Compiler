@@ -55,7 +55,7 @@ $mng = new MongoDB\Driver\Manager("mongodb://localhost:27017");
 		echo $myJSON;	}
 	else if(!strpos($error,"error"))
 	{
-		echo "<pre>$error</pre>";
+		// echo "<pre>$error</pre>";
 		if(trim($input)=="")
 		{
 			$output=shell_exec($out);
@@ -71,9 +71,11 @@ $mng = new MongoDB\Driver\Manager("mongodb://localhost:27017");
 		echo $myJSON;	}
 	else
 	{
-@$myObj->name = $error;
+		@$myObj->name = $error;
 		$myJSON = json_encode($myObj);
-		echo $myJSON;		$check=1;
+		echo $myJSON;		
+		
+		$check=1;
 	}
 	$executionEndTime = microtime(true);
 	$seconds = $executionEndTime - $executionStartTime;
