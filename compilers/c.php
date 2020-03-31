@@ -1,34 +1,25 @@
 <?php
 header('Access-Control-Allow-Origin: *');  
-
-    try {
-        $postdata = file_get_contents("php://input");
-        $request = json_decode($postdata,True);
-        @$email = $request->email;
-        echo $email;
-
-        $mng = new MongoDB\Driver\Manager("mongodb://localhost:27017");
         
-        $filter = [ 'email' => 12345]; 
-        $query = new MongoDB\Driver\Query($filter);     
-        
-        $res = $mng->executeQuery("TestR.OnlineCompiler", $query);
-        
-		$car = current($res->toArray());
-		
-		if (!empty($car)) {
     
-			putenv("PATH=C:\Program Files (x86)\CodeBlocks\MinGW\bin");
-			$CC="gcc";
-	$out="a.exe";
-	$code=$car->code;
+        $postdata = file_get_contents("php://input");
+        $request = json_decode($postdata);
+        @$email = $request->email;
+		// echo $email;
+
+		$decode =urldecode($email);
+		
+		$CC="gcc";
+	$out="timeout 5s ./a.out";
+	$code=$decode;
 	$input="";
 	$filename_code="main.c";
 	$filename_in="input.txt";
 	$filename_error="error.txt";
-	$executable="a.exe";
+	$executable="a.out";
 	$command=$CC." -lm ".$filename_code;	
 	$command_error=$command." 2>".$filename_error;
+	$check=0;
 
 	//if(trim($code)=="")
 	//die("The code area is empty");
@@ -39,11 +30,12 @@ header('Access-Control-Allow-Origin: *');
 	$file_in=fopen($filename_in,"w+");
 	fwrite($file_in,$input);
 	fclose($file_in);
-	exec("cacls  $executable /g everyone:f"); 
-	exec("cacls  $filename_error /g everyone:f");	
+	exec("chmod 777 $executable"); 
+	exec("chmod 777 $filename_error");	
 
 	shell_exec($command_error);
 	$error=file_get_contents($filename_error);
+	$executionStartTime = microtime(true);
 
 	if(trim($error)=="")
 	{
@@ -57,36 +49,9 @@ header('Access-Control-Allow-Origin: *');
 			$output=shell_exec($out);
 		}
 		//echo "<pre>$output</pre>";
-
-		$request1 = json_decode($output,True);
-		echo $request1;
-		$bulk = new MongoDB\Driver\BulkWrite;
-    
-				try {
-     
-					$mng = new MongoDB\Driver\Manager("mongodb://localhost:27017");
-					
-					$bulk = new MongoDB\Driver\BulkWrite;
-					
-					$doc = [ 'output' => $output, 'email' => 'lobopranayk9@gmail.com'];
-					$bulk->insert($doc);
-					
-					
-					$mng->executeBulkWrite('TestR.OnlineCompiler', $bulk);
-						
-				} catch (MongoDB\Driver\Exception\Exception $e) {
-				
-					$filename = basename(__FILE__);
-					
-					echo "The $filename script has experienced an error.\n"; 
-					echo "It failed with the following exception:\n";
-					
-					echo "Exception:", $e->getMessage(), "\n";
-					echo "In file:", $e->getFile(), "\n";
-					echo "On line:", $e->getLine(), "\n";    
-				}
-        //echo "<textarea id='div' class=\"form-control\" name=\"output\" rows=\"10\" cols=\"50\">$output</textarea><br><br>";
-	}
+		@$myObj->name = $output;
+		$myJSON = json_encode($myObj);
+		echo $myJSON;	}
 	else if(!strpos($error,"error"))
 	{
 		echo "<pre>$error</pre>";
@@ -100,88 +65,38 @@ header('Access-Control-Allow-Origin: *');
 			$output=shell_exec($out);
 		}
 		//echo "<pre>$output</pre>";
-		// echo "$output";
-		$request1 = json_decode($output,True);
-		echo $request1;
-		$bulk = new MongoDB\Driver\BulkWrite;
-    
-				try {
-     
-					$mng = new MongoDB\Driver\Manager("mongodb://localhost:27017");
-					
-					$bulk = new MongoDB\Driver\BulkWrite;
-					
-					$doc = [ 'output' => $output, 'email' => 'lobopranayk9@gmail.com'];
-					$bulk->insert($doc);
-					
-					
-					$mng->executeBulkWrite('TestR.OnlineCompiler', $bulk);
-						
-				} catch (MongoDB\Driver\Exception\Exception $e) {
-				
-					$filename = basename(__FILE__);
-					
-					echo "The $filename script has experienced an error.\n"; 
-					echo "It failed with the following exception:\n";
-					
-					echo "Exception:", $e->getMessage(), "\n";
-					echo "In file:", $e->getFile(), "\n";
-					echo "On line:", $e->getLine(), "\n";    
-				}
-                //echo "<textarea id='div' class=\"form-control\" name=\"output\" rows=\"10\" cols=\"50\">$output</textarea><br><br>";
-	}
+		@$myObj->name = $output;
+		$myJSON = json_encode($myObj);
+		echo $myJSON;	}
 	else
 	{
-		// echo "<pre>$error</pre>";
-
-		$bulk = new MongoDB\Driver\BulkWrite;
-    
-				try {
-     
-					$mng = new MongoDB\Driver\Manager("mongodb://localhost:27017");
-					
-					$bulk = new MongoDB\Driver\BulkWrite;
-					
-					$doc = [ 'output' => $error, 'email' => 'lobopranayk9@gmail.com'];
-					$bulk->insert($doc);
-					
-					
-					$mng->executeBulkWrite('TestR.OnlineCompiler', $bulk);
-						
-				} catch (MongoDB\Driver\Exception\Exception $e) {
-				
-					$filename = basename(__FILE__);
-					
-					echo "The $filename script has experienced an error.\n"; 
-					echo "It failed with the following exception:\n";
-					
-					echo "Exception:", $e->getMessage(), "\n";
-					echo "In file:", $e->getFile(), "\n";
-					echo "On line:", $e->getLine(), "\n";    
-				}
+@$myObj->name = $error;
+		$myJSON = json_encode($myObj);
+		echo $myJSON;		$check=1;
 	}
-	exec("del $filename_code");
-	exec("del *.o");
-	exec("del *.txt");
-	exec("del $executable");
-		} else {
-		
-			echo "No match found\n";
-		}
-       
-        
-    } catch (MongoDB\Driver\Exception\Exception $e) {
-    
-        $filename = basename(__FILE__);
-        
-        echo "The $filename script has experienced an error.\n"; 
-        echo "It failed with the following exception:\n";
-        
-        echo "Exception:", $e->getMessage(), "\n";
-        echo "In file:", $e->getFile(), "\n";
-        echo "On line:", $e->getLine(), "\n";    
-    }
-    
-    
+	$executionEndTime = microtime(true);
+	$seconds = $executionEndTime - $executionStartTime;
+	$seconds = sprintf('%0.2f', $seconds);
+	echo "<pre>Compiled And Executed In: $seconds s</pre>";
+	if($check==1)
+	{
+		echo "<pre>Verdict : CE</pre>";
+	}
+	else if($check==0 && $seconds>3)
+	{
+		echo "<pre>Verdict : TLE</pre>";
+	}
+	else if(trim($output)=="")
+	{
+		echo "<pre>Verdict : WA</pre>";
+	}
+	else if($check==0)
+	{
+		echo "<pre>Verdict : AC</pre>";
+	}
+	exec("rm $filename_code");
+	exec("rm *.o");
+	exec("rm *.txt");
+	exec("rm $executable");
     
 ?>
