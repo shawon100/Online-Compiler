@@ -1,5 +1,6 @@
 <?php
 header('Access-Control-Allow-Origin: *');  
+$mng = new MongoDB\Driver\Manager("mongodb://localhost:27017");
         
     
         $postdata = file_get_contents("php://input");
@@ -76,23 +77,23 @@ header('Access-Control-Allow-Origin: *');
 	}
 	$executionEndTime = microtime(true);
 	$seconds = $executionEndTime - $executionStartTime;
-	$seconds = sprintf('%0.2f', $seconds);
-	echo "<pre>Compiled And Executed In: $seconds s</pre>";
+	// $seconds = sprintf('%0.2f', $seconds);
+	// echo "<pre>Compiled And Executed In: $seconds s</pre>";
 	if($check==1)
 	{
-		echo "<pre>Verdict : CE</pre>";
+		// echo "<pre>Verdict : CE</pre>";
 	}
 	else if($check==0 && $seconds>3)
 	{
-		echo "<pre>Verdict : TLE</pre>";
+		// echo "<pre>Verdict : TLE</pre>";
 	}
 	else if(trim($output)=="")
 	{
-		echo "<pre>Verdict : WA</pre>";
+		// echo "<pre>Verdict : WA</pre>";
 	}
 	else if($check==0)
 	{
-		echo "<pre>Verdict : AC</pre>";
+		// echo "<pre>Verdict : AC</pre>";
 	}
 	exec("rm $filename_code");
 	exec("rm *.o");
