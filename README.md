@@ -62,7 +62,6 @@ docker run -p 80:80 online-compiler
 
 Create deployment.yaml file
 ```
-# This is your Editor pane.
 apiVersion: v1
 kind: Service
 metadata:
@@ -98,6 +97,7 @@ spec:
         ports:
         - containerPort: 80
  ```
+ Run 
  ```
  kubectl apply -f deployment.yaml
  ```
