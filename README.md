@@ -47,3 +47,58 @@ chmod -R 777 Online-Compiler
 
 # Windows Version
 https://github.com/shawon100/Online-Compiler-Windows-Server
+
+
+# DevOps Features 
+
+## Docker
+```
+docker pull shawon10/online-compiler
+```
+```
+docker run -p online-compiler
+```
+## Kubernetes
+
+Create deployment.yaml file
+```
+# This is your Editor pane.
+apiVersion: v1
+kind: Service
+metadata:
+  name: onlinecompiler-service
+spec:
+  selector:
+    app: onlinecompiler
+  ports:
+  - protocol: "TCP"
+    port: 80
+    targetPort: 80
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: onlinecompiler
+spec:
+  selector:
+    matchLabels:
+      app: onlinecompiler
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: onlinecompiler
+    spec:
+      containers:
+      - name: onlinecompiler
+        image: shawon10/online-compiler
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+ ```
+ ```
+ kubectl apply -f deployment.yaml
+ ```
+
