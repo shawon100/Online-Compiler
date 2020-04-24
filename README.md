@@ -56,7 +56,7 @@ https://github.com/shawon100/Online-Compiler-Windows-Server
 docker pull shawon10/online-compiler
 ```
 ```
-docker run -p online-compiler
+docker run -p 80:80 online-compiler
 ```
 ## Kubernetes
 
