@@ -48,7 +48,10 @@ EXPOSE 80
 CMD /usr/sbin/apache2ctl -D FOREGROUND
 
 #Copy files to webserver 
-ADD app /var/www/html/app
+COPY app /var/www/html/
 
 #Change Permission
-RUN chmod -R 777 /var/www/html/app
+RUN chmod -R 777 /var/www/html/
+
+# Remove Default index.html
+RUN rm /var/www/html/index.html
