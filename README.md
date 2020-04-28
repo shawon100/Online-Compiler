@@ -51,10 +51,14 @@ https://github.com/shawon100/Online-Compiler-Windows-Server
 
 # DevOps Features 
 
-## Docker
+## Docker Build Image
+
+Copy Dockerfile to Outside of Online-Compiler Folder. Then Run docker build command.
+
 ```
-docker pull shawon10/online-compiler
+docker build -t online-compiler .
 ```
+## Docker Run Container
 ```
 docker run -p 80:80 online-compiler
 ```
@@ -101,4 +105,12 @@ spec:
  ```
  kubectl apply -f deployment.yaml
  ```
+Check IP and Ports
+```
+ kubectl get svc
+```
+ 
+## Openshift Deploy (Online)
+
+Check this video: https://www.youtube.com/watch?v=QnA0QidkWSM
 
