@@ -40,10 +40,20 @@ sudo add-apt-repository ppa:openjdk-r/ppa
 sudo apt-get update   
 sudo apt install openjdk-8-jre
 ```
+# Move Online-Compiler Folder to Server Folder
+```
+If you are using Xampp then you have to move Online-Compiler folder to htdocs of Xampp. If you are using only Apache Server then move to www folder.
+```
 # Change Permission
 ```
 chmod -R 777 Online-Compiler
 ```
+# Run 
+```
+Type http://localhost/Online-Compiler/ from your Browser. Done!
+
+```
+
 
 # Windows Version
 https://github.com/shawon100/Online-Compiler-Windows-Server
