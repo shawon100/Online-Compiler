@@ -60,9 +60,27 @@ https://github.com/shawon100/Online-Compiler-Windows-Server
 
 
 # DevOps Features 
+Install Docker at first. So, you can run this project in Windows/Linux/Mac<br> 
+using Docker without doing anything mentioned before.
+
+## Direct One Command Install
+```
+docker pull shawon10/online-compiler
+```
+## Docker Run Pulled Image
+```
+docker run -p 80:80 online-compiler
+```
+## Check IP 
+```
+docker-machine ip
+```
+## Run Browser
+```
+Type your ip in browser adress bar and Enter
+```
 
 ## Docker Build Image
-
 Copy Dockerfile to Outside of Online-Compiler Folder. Then Run docker build command.
 
 ```
