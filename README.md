@@ -1,7 +1,6 @@
 # Demo
 
-http://ruetoc-ruetoc.apps.us-west-1.starter.openshift-online.com/
-
+https://oj.redlimesolutions.ml/
 
 # Online-Compiler
 
