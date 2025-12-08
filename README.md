@@ -1,6 +1,6 @@
 # Demo
 
-https://oj.redlimesolutions.ml/
+https://oj.aimlyfy.com/
 
 # Online-Compiler
 
